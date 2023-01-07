@@ -1,4 +1,4 @@
-Shader "Custom/Sample_VertFrag"
+Shader "Custom/VertexGradient/Sample_VertFrag"
 {
     Properties
     {

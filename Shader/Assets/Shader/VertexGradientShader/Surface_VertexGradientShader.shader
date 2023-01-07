@@ -1,4 +1,4 @@
-Shader "Custom/Surface_VertexGradientShader"
+Shader "Custom/VertexGradient/Surface_VertexGradientShader"
 {
     Properties
     {
