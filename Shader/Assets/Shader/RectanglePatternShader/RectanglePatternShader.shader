@@ -84,7 +84,7 @@ Shader "Custom/RectanglePattern"
 
                 float2 rep = frac(pos);
                 // frac() : pos의 소숫점을 반환함
-                // uv.x 의 값이 1.0 ~ 1.9 인 구간이 있다면 0.0~0.9 반환, 2.0~2.9도 동일하게 0.1~0.9 반환
+                // uv.x 의 값이 1.0 ~ 1.9 인 구간이 있다면 0.0~0.9 반환, 2.0~2.9도 동일하게 0.0~0.9 반환
 
                 float2 adjust = float2(min(rep.x, 1.0 - rep.x), min(rep.y, 1.0 - rep.y));
                 // min(a, b) : 두 값 중 작은 값을 반환
