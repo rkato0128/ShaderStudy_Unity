@@ -1,5 +1,7 @@
 Shader "Custom/VertexGradient/Surface_VertexGradientShader"
 {
+    // Built-In Render Pipeline version
+
     Properties
     {
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
