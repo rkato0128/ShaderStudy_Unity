@@ -95,7 +95,7 @@ Shader "Custom/ChromaticAberrationEffect"
                 float rand = random(floor(i.uv + float2(floor(_Time.y * _GlitchSpeed), 0)));
 
                 // Distance 함수를 사용해 화면 외곽부로 갈수록 효과 강해지게 하기
-                float distanceValue = distance(float2(0.5, 0.5), i.uv) * _DistanceParam;
+                float distanceValue = distance(float2(0.5, 0.5), i.uv);
 
                 // 색수차 효과의 적용 각도 라디안값으로 변환
                 // 랜덤 값을 더해 각도를 불규칙적으로 변경해 글리치 효과 생성
