@@ -16,6 +16,9 @@ Shader "Custom/ChromaticAberrationEffect"
         _GChannelRange ("Green Channel Motion Range", Range(0, 1)) = 0
         _BChannelRange ("Blue Channel Motion Range", Range(0, 1)) = 1
         [Space]
+        [Header (Distance Options)]
+        [Space]
+        _DistanceParam ("Distance Effect Parameter", Range(0, 1)) = 0
         [Header (Glitch Effect)]
         [Space]
         [MaterialToggle] _isGlitchOn("Glitch Effect Toggle", Float) = 0
@@ -71,6 +74,8 @@ Shader "Custom/ChromaticAberrationEffect"
             float _GChannelRange;
             float _BChannelRange;
 
+            float _DistanceParam;
+
             float _isGlitchOn;
             float _GlitchSpeed;
 
@@ -89,6 +94,9 @@ Shader "Custom/ChromaticAberrationEffect"
                 // Random 함수를 사용해 색수차 글리치 애니메이션 추가
                 float rand = random(floor(i.uv + float2(floor(_Time.y * _GlitchSpeed), 0)));
 
+                // Distance 함수를 사용해 화면 외곽부로 갈수록 효과 강해지게 하기
+                float distanceValue = distance(float2(0.5, 0.5), i.uv) * _DistanceParam;
+
                 // 색수차 효과의 적용 각도 라디안값으로 변환
                 // 랜덤 값을 더해 각도를 불규칙적으로 변경해 글리치 효과 생성
                 float rRadian = radians(_RChannelAngle + rand * 360 * _isGlitchOn);
@@ -99,6 +107,11 @@ Shader "Custom/ChromaticAberrationEffect"
                 float rMotionValue = _RChannelRange * _Intensity * 0.001;
                 float gMotionValue = _GChannelRange * _Intensity * 0.001;
                 float bMotionValue = _BChannelRange * _Intensity * 0.001;
+
+                // Distance 값 적용
+                rMotionValue = lerp(rMotionValue, rMotionValue * distanceValue, _DistanceParam);
+                gMotionValue = lerp(gMotionValue, gMotionValue * distanceValue, _DistanceParam);
+                bMotionValue = lerp(bMotionValue, bMotionValue * distanceValue, _DistanceParam);
 
                 // 각도에 맞게 색수차 효과를 내줄 벡터 회전
                 float2 rMotion = float2(cos(rRadian), sin(rRadian)) * rMotionValue;
