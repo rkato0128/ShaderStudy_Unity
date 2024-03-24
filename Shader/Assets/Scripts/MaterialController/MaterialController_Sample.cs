@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class MaterialController_Sample : MaterialControllerBase
 {
     [SerializeField] private string secondProperty;
