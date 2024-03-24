@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Graphics))]
 [ExecuteAlways]
-public class MaterialController : UIBehaviour, IMaterialModifier
+public class MaterialControllerBase : UIBehaviour, IMaterialModifier
 {
     [SerializeField] private string firstProperty;
     public float firstValue = 0;
@@ -73,10 +73,6 @@ public class MaterialController : UIBehaviour, IMaterialModifier
     // Perform material modification in this function.
     public Material GetModifiedMaterial(Material baseMaterial) 
     {
-        //Debug.Log("Modified");
-        //Debug.Log("base mat : " + baseMaterial);
-        //Debug.Log("mat : " + material);
-
         if (IsActive() == false || _graphic == null)
             return baseMaterial;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class MatControllerSample : MaterialController
+public class MaterialController_Sample : MaterialControllerBase
 {
     [SerializeField] private string secondProperty;
     public float secondValue;
@@ -16,5 +16,7 @@ public class MatControllerSample : MaterialController
 
         material.SetFloat(secondProperty, secondValue);
         material.SetFloat(thirdProperty, thirdValue);
+
+        // 추가 속성값들 편집
     }
 }

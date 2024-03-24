@@ -6,6 +6,7 @@ Shader "Custom/SDFShader"
         _Color ("Color", Color) = (1, 1, 1, 1)
         _Threshold ("SDF Alpha Threshold", Range(0, 1)) = 0.5
         _EdgeSoftness ("Edge Softness", Range(0, 0.5)) = 0.1
+        _Tiling ("Tiling Value", Float) = 1
     }
     SubShader
     {
@@ -37,6 +38,7 @@ Shader "Custom/SDFShader"
             float _Threshold;
             float _EdgeSoftness;
             fixed4 _Color;
+            float _Tiling;
 
             v2f vert (appdata v)
             {
@@ -48,7 +50,7 @@ Shader "Custom/SDFShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, (i.uv - 0.5) * _Tiling + 0.5);
 
                 // Alpha Test
                 //col.a = col.r > _Threshold;
